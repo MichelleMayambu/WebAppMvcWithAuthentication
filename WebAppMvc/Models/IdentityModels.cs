@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
+
 namespace WebAppMvc.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
@@ -21,9 +22,14 @@ namespace WebAppMvc.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("ApplicationDbContext", throwIfV1Schema: false)
         {
+
         }
+        public DbSet<Customer> Customers { get; set; } // My domain model
+        public DbSet<Movie> Movies { get; set; }// My domain models      
+        public DbSet<MembershipType> MembershipTypes { get; set; }
+        public DbSet<GenreType> GenreTypes { get; set; }
 
         public static ApplicationDbContext Create()
         {
