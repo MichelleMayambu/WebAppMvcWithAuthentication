@@ -11,6 +11,7 @@ using WebAppMvc.ViewModels;
 
 namespace WebAppMvc.Controllers
 {
+    [AllowAnonymous]
     public class MovieController : Controller
     {
         private ApplicationDbContext _context;

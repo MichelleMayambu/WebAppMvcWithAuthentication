@@ -9,8 +9,10 @@ using WebAppMvc.ViewModels;
 
 namespace WebAppMvc.Controllers
 {
+    [Authorize]
     public class CustomerController : Controller
     {
+        
         private ApplicationDbContext _context; //access context class
 
 
