@@ -11,7 +11,7 @@ using WebAppMvc.ViewModels;
 
 namespace WebAppMvc.Controllers
 {
-    [AllowAnonymous]
+    
     public class MovieController : Controller
     {
         private ApplicationDbContext _context;
@@ -28,15 +28,19 @@ namespace WebAppMvc.Controllers
             _context.Dispose();
         }
         // GET: Movies/Random 
-        public ActionResult Random()
+        public ActionResult Index()
         {
 
-            var movies = _context.Movies.Include(m => m.GenreType).ToList();
-
-            return View(movies);
+            //var movies = _context.Movies.Include(m => m.GenreType).ToList();
+            if (User.IsInRole(RoleName.CanManageMovies))
+                return View("List");
+            else
+                return View("ReadOnlyList");
 
 
         }
+
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var genreTypes = _context.GenreTypes.ToList();
@@ -50,6 +54,7 @@ namespace WebAppMvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Save(Movie movie)
         {
             //Model.State to check validation from the model
@@ -81,8 +86,10 @@ namespace WebAppMvc.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("Random", "Movie");
+            return RedirectToAction("List", "Movie");
         }
+
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Edit(int id)
         {
             var movies = _context.Movies.SingleOrDefault(c => c.Id == id);
