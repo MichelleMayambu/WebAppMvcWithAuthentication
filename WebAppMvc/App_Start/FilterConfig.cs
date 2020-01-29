@@ -10,6 +10,10 @@ namespace WebAppMvc
             filters.Add(new HandleErrorAttribute());
             filters.Add(new AuthorizeAttribute());
 
+            //limit acces to the app to only a secure connection channel https://
+            filters.Add(new RequireHttpsAttribute());
+
+
         }
     }
 }
