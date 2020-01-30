@@ -8,10 +8,10 @@ using System.Web.Mvc;
 
 namespace WebAppMvc.Controllers.Api
 {
-    public class RentalsController : ApiController
+    public class NewRentalsController : ApiController
     {
 
-        public IHttpActionResult NewRental()
+        public IHttpActionResult NewRental(NewRentalDto newRental)
         {
 
             throw new NotImplementedException();
