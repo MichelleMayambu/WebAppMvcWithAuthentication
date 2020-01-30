@@ -10,7 +10,7 @@ namespace WebAppMvc.Controllers
     [AllowAnonymous]
     public class HomeController : Controller
     {
-        [OutputCache(Duration = 60, Location =OutputCacheLocation.Server, VaryByParam="genre")]
+        [OutputCache(Duration = 0,VaryByParam="*", NoStore = true)]
         public ActionResult Index()
         {
             return View();
