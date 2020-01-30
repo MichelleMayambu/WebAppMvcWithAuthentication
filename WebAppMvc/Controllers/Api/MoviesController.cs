@@ -34,14 +34,17 @@ namespace WebApplication2.Controllers.Api
 
         }
         //GET /api/movies/1
-        public MovieDto GetMovie(int id)
+        public IEnumerable<MovieDto> GetMovies(string query = null)
         {
-            var movies = _context.Movies.SingleOrDefault(c => c.Id == id);
+            var moviesQuery = _context.Movies
+                .Include(m => m.GenreType).Include(m => m.GenreType)
+                .Where(m => m.NumberAvailable > 0);
 
-            if (movies == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-
-            return Mapper.Map<Movie, MovieDto>(movies);
+            if (!String.IsNullOrWhiteSpace(query))
+                moviesQuery = moviesQuery.Where(m => m.Name.Contains(query));
+            return moviesQuery
+                .ToList().ToList()
+                .Select(Mapper.Map<Movie, MovieDto>);	       
         }
         // POST /api/customers
         [HttpPost]

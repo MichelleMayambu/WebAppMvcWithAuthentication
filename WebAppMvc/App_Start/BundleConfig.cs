@@ -13,7 +13,8 @@ namespace WebAppMvc
                             "~/Scripts/jquery-{version}.js",
                          "~/Scripts/bootbox.js",
                          "~/Scripts/respond.js",
-                         "~/Scripts/datatables/jquery.datatables.js"));
+                         "~/Scripts/datatables/jquery.datatables.js",
+                           "~/scripts/typeahead.bundle.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -33,6 +34,7 @@ namespace WebAppMvc
                       "~/Content/bootstrap.css",
                         "~/Content/datatables/css/jquery.datatables.css",
                        "~/Content/DataTables/css/dataTables.bootstrap4.css",
+                        "~/content/typeahead.css",
                       "~/Content/site.css"));
         }
     }
