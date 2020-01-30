@@ -7,13 +7,13 @@ namespace WebAppMvc.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class FixedMemberShipType : IMigrationMetadata
+    public sealed partial class AddedNeRentalDataSet : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FixedMemberShipType));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedNeRentalDataSet));
         
         string IMigrationMetadata.Id
         {
-            get { return "202001271159148_FixedMemberShipType"; }
+            get { return "202001301431558_AddedNeRentalDataSet"; }
         }
         
         string IMigrationMetadata.Source
