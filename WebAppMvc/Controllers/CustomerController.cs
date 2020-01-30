@@ -41,9 +41,10 @@ namespace WebAppMvc.Controllers
         // GET: Customers/CustomerList
         public ActionResult CustomerList()
         {
-
+          
             return View();
         }
+
         public ActionResult New()
         {
             var membershipTypes = _context.MembershipTypes.ToList();
