@@ -28,11 +28,12 @@ namespace WebAppMvc.Models
         [Range(1, 20)]
         public int NumberInStock { get; set; }
 
-
         public GenreType GenreType { get; set; }
 
         [Display(Name = "Genre")]
         public int GenreTypeId { get; set; }
+
+        public int NumberAvailable { get; set; }
 
 
 
