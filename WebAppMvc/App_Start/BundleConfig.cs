@@ -14,7 +14,8 @@ namespace WebAppMvc
                          "~/Scripts/bootbox.js",
                          "~/Scripts/respond.js",
                          "~/Scripts/datatables/jquery.datatables.js",
-                           "~/scripts/typeahead.bundle.js"));
+                           "~/scripts/typeahead.bundle.js",
+                             "~/scripts/bloodhound.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));

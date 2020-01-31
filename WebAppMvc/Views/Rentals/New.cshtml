@@ -26,10 +26,11 @@
             <ul id="movies" class="list-group"></ul>
         </div>
     </div>
+  
 
-    <button class="btn btn-primary">Submit</button>
+    <button  class="btn btn-primary">Submit</button>
 </form>
-@*@section scripts
+@section scripts
 {
     <script>
         $(document).ready(function () {
@@ -40,8 +41,52 @@
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
                 remote: {
-                    url: '/api/customers?query=%QUERY',
+                    url: '/api/Customers?query=%QUERY',
                     wildcard: '%QUERY'
-            }
-                </script>
-    }*@
+                }
+            });
+            $('#customer').typeahead({
+                minLength: 3,
+                highlight: true
+            }, {
+                    name: 'Customers',
+                    display: 'name',
+                    source: customers
+                }).on("typeahead:select", function (e, customer) {
+                    vm.customerId = customer.id;
+                });
+            var movies = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '/api/Movies?query=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+            $('#movie').typeahead({
+                minLength: 3,
+                highlight: true
+            }, {
+                    name: 'Movies',
+                    display: 'name',
+                    source: movies
+                }).on("typeahead:select", function (e, movie) {
+                    $("#movies").append("<li class='list-group-item'>" + movie.name + "</li>");
+                    $("#movie").typeahead("val", "");
+                    vm.movieIds.push(movie.id);
+                });
+            $("#newRental").submit(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: "/api/NewRentals",
+                    method: "post",
+                    data: vm
+                })
+                    .done(function () {
+                        console.log("done");
+                    })
+                    .fail(function () {
+                    });
+            });
+    </script>
+}

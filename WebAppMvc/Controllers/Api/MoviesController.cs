@@ -21,30 +21,29 @@ namespace WebApplication2.Controllers.Api
             _context = new ApplicationDbContext();
         }
         //GET /api/movies
-        public IHttpActionResult GetMovies()
+        public IHttpActionResult GetMovie(int id)
         {
-            var moviesDtos = _context.Movies
-               .Include(c => c.GenreType)
-               .ToList()
-               .Select(Mapper.Map<Movie, MovieDto>);
+            var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
 
+            if (movie == null)
+                return NotFound();
 
-            return Ok(moviesDtos);
-
-
+            return Ok(Mapper.Map<Movie, MovieDto>(movie));
         }
+
         //GET /api/movies/1
         public IEnumerable<MovieDto> GetMovies(string query = null)
         {
             var moviesQuery = _context.Movies
-                .Include(m => m.GenreType).Include(m => m.GenreType)
+                .Include(m => m.GenreType)
                 .Where(m => m.NumberAvailable > 0);
 
             if (!String.IsNullOrWhiteSpace(query))
                 moviesQuery = moviesQuery.Where(m => m.Name.Contains(query));
+
             return moviesQuery
-                .ToList().ToList()
-                .Select(Mapper.Map<Movie, MovieDto>);	       
+                .ToList()
+                .Select(Mapper.Map<Movie, MovieDto>);
         }
         // POST /api/customers
         [HttpPost]
