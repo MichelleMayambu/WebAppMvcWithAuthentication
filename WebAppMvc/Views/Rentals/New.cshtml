@@ -83,9 +83,17 @@
                     data: vm
                 })
                     .done(function () {
-                        console.log("done");
+                        toastr.success("Rentals successfully recorded");
+                        $("#customer").typeahead("val", "");
+                        $("#movie").typeahead("val", "");
+                        $("#movies").empty();
+
+                        vm = { movieIds: [] };
+                        validator.resetForm();
+                      
                     })
                     .fail(function () {
+                        toastr.error("something unexpected happend");
                     });
             });
     </script>

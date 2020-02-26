@@ -15,6 +15,7 @@ namespace WebAppMvc
                          "~/Scripts/respond.js",
                          "~/Scripts/datatables/jquery.datatables.js",
                            "~/scripts/typeahead.bundle.js",
+                           "~/scripts/toastr.js",
                              "~/scripts/bloodhound.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -36,6 +37,7 @@ namespace WebAppMvc
                         "~/Content/datatables/css/jquery.datatables.css",
                        "~/Content/DataTables/css/dataTables.bootstrap4.css",
                         "~/content/typeahead.css",
+                        "~/content/toastr.css",
                       "~/Content/site.css"));
         }
     }
